@@ -15,6 +15,9 @@
 <link rel="icon" type="image/png" href="assets/logo/knight-favicon.png">
 <style>
 *{box-sizing:border-box}
+@keyframes pf-drift{from{transform:translate(-6%,4%) scale(.9);opacity:.1}to{transform:translate(6%,-4%) scale(1.1);opacity:.34}}
+@keyframes pf-bloom{from{opacity:.06}to{opacity:.3}}
+@media (prefers-reduced-motion:reduce){[data-pf-anim]{animation:none!important}}
 html{scroll-behavior:smooth}
 body{margin:0;background:#0B0E0D;color:#F2F4F3;font-family:'Geist',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 a{color:#F2F4F3;text-decoration:none}
@@ -122,8 +125,21 @@ body{padding:0 clamp(20px,3.4vw,56px)}
       <div data-reveal="{{ p.delay }}" style="display:grid;min-width:0">
         <a href="{{ p.href }}" target="_blank" rel="noreferrer" onMouseEnter="{{ btnIn }}" onMouseLeave="{{ btnOut }}" onFocus="{{ btnIn }}" onBlur="{{ btnOut }}" style="display:block;min-width:0;padding:1px;background:rgba(255,255,255,.1);color:#F2F4F3;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);transition:background .4s" style-hover="background:rgba(0,179,132,.65);color:#F2F4F3">
           <div style="height:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));grid-template-rows:auto 1fr;background:#111614;clip-path:polygon(23.6px 0,100% 0,100% calc(100% - 23.6px),calc(100% - 23.6px) 100%,0 100%,0 23.6px)">
-            <div style="position:relative;aspect-ratio:5 / 4;overflow:hidden;background:#0B0E0D">
-              <img src="{{ p.img }}" alt="" loading="lazy" data-on="transform:scale(1.05)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 85%;transition:transform .9s cubic-bezier(.16,1,.3,1)">
+            <div style="position:relative;aspect-ratio:5 / 4;overflow:hidden;background:#0C100F;color:{{ p.rgb }}">
+              <sc-if value="{{ bgLight }}" hint-placeholder-val="{{ true }}">
+                <span aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(60% 16% at 50% 86%,color-mix(in srgb,currentColor 20%,transparent),transparent 70%),linear-gradient(180deg,#0E1312,#0A0D0C)"></span>
+                <span aria-hidden="true" style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 44px),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 44px);background-position:center;-webkit-mask-image:radial-gradient(60% 60% at 50% 52%,#000 15%,transparent 100%);mask-image:radial-gradient(60% 60% at 50% 52%,#000 15%,transparent 100%)"></span>
+              </sc-if>
+              <sc-if value="{{ bgFacet }}" hint-placeholder-val="{{ false }}">
+                <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(118deg,color-mix(in srgb,currentColor 16%,transparent) 0 21%,color-mix(in srgb,currentColor 6%,transparent) 21% 47%,transparent 47%),linear-gradient(242deg,color-mix(in srgb,currentColor 12%,transparent) 0 19%,color-mix(in srgb,currentColor 3%,transparent) 19% 43%,transparent 43%),linear-gradient(8deg,rgba(255,255,255,.04) 0 26%,transparent 26%),#0B0F0E"></span>
+              </sc-if>
+              <sc-if value="{{ bgTone }}" hint-placeholder-val="{{ false }}">
+                <span aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(95% 85% at 50% 42%,color-mix(in srgb,currentColor 22%,#0B0E0D),color-mix(in srgb,currentColor 6%,#0B0E0D) 78%)"></span>
+                <img src="{{ p.logo }}" alt="" aria-hidden="true" style="position:absolute;right:-42%;bottom:-34%;width:150%;opacity:.07;filter:grayscale(1) brightness(2.2)">
+              </sc-if>
+              <span aria-hidden="true" data-on="opacity:.42;transform:scale(1.12)" style="position:absolute;inset:0;background:radial-gradient(38% 34% at 50% 54%,currentColor,transparent 100%);opacity:.24;transition:opacity .6s,transform .9s cubic-bezier(.16,1,.3,1)"></span>
+              <span aria-hidden="true" data-on="opacity:1" style="position:absolute;inset:0;opacity:0;transition:opacity .8s;pointer-events:none"><span data-pf-anim="" style="position:absolute;inset:0;background:radial-gradient(34% 30% at 50% 54%,currentColor,transparent 100%);opacity:.2;animation:pf-drift 4s ease-in-out infinite alternate;animation-delay:{{ p.glowDelay }}"></span><img src="{{ p.logo }}" alt="" data-pf-anim="" data-on="transform:translate(-50%,-50%) scale(1.05)" style="position:absolute;left:50%;top:54%;width:{{ p.logoW }};height:auto;transform:translate(-50%,-50%);filter:blur(16px) brightness(1.5) saturate(1.3);opacity:.18;animation:pf-bloom 2.6s ease-in-out infinite alternate;animation-delay:{{ p.glowDelay }};transition:transform .9s cubic-bezier(.16,1,.3,1)"></span>
+              <img src="{{ p.logo }}" alt="{{ p.name }}" loading="lazy" data-on="transform:translate(-50%,-50%) scale(1.05)" style="position:absolute;left:50%;top:54%;width:{{ p.logoW }};height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 12px 28px rgba(0,0,0,.55));transition:transform .9s cubic-bezier(.16,1,.3,1)">
               <span aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:72px;background:linear-gradient(to bottom,rgba(11,14,13,.75),rgba(11,14,13,0));pointer-events:none"></span>
               <span style="position:absolute;top:20px;left:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#C9D0CC">{{ p.tag }}</span>
             </div>
@@ -164,7 +180,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
 <section id="about" data-screen-label="About" style="border-top:1px solid rgba(255,255,255,.08);scroll-margin-top:72px">
   <div style="position:relative;overflow:hidden;max-width:1440px;margin:0 auto;padding:0 clamp(24px,6vw,96px)">
   <div aria-hidden="true" style="position:absolute;top:0;bottom:0;left:clamp(24px,6vw,96px);right:clamp(24px,6vw,96px);border-right:1px solid rgba(255,255,255,.045);background:repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 1px,transparent 1px calc(100% / 12));pointer-events:none"></div>
-  <img src="assets/logo/knight-mark.png" alt="" aria-hidden="true" style="position:absolute;right:clamp(-120px,-5vw,-40px);top:clamp(24px,3vw,48px);width:clamp(220px,30vw,420px);opacity:.06;pointer-events:none">
+  <img src="assets/logo/knight-mark.png" alt="" aria-hidden="true" style="position:absolute;right:clamp(-60px,-1.5vw,-12px);top:clamp(0px,.8vw,16px);width:clamp(220px,30vw,420px);opacity:.06;pointer-events:none">
   <div style="position:relative;padding:clamp(56px,7vw,96px) 0 0;display:grid;gap:clamp(26px,3vw,40px)">
     <div data-reveal="0" style="display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;background:#00B384;transform:rotate(45deg)"></span><h2 style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;font-weight:400;letter-spacing:.1em;line-height:1.4;color:#A7AFAB">ABOUT</h2></div>
     <p data-reveal="0" style="margin:0;max-width:960px;font-size:clamp(24px,2.6vw,36px);font-weight:500;letter-spacing:-.03em;line-height:1.2;text-wrap:pretty">Utmost Games is a premier European gaming holding company dedicated to fostering the growth and success of gaming studios and publishers around the world. Our mission is to find the best gaming talents and projects and carefully frame them in tailored investment strategies, providing them with the resources and expertise needed to excel.</p>
@@ -313,12 +329,10 @@ body{padding:0 clamp(20px,3.4vw,56px)}
               <input name="email" type="text" autoComplete="email" placeholder="you@company.com" style="height:44px;width:100%;min-width:0;padding:0 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.14);border-radius:2px;color:#F2F4F3;font-size:15px;outline:none;transition:border-color .2s" style-focus="border-color:#00B384">
               <sc-if value="{{ errors.email }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#E7A3A3">{{ errors.email }}</span></sc-if>
             </label>
-            <sc-if value="{{ isPitch }}" hint-placeholder-val="{{ false }}">
               <label style="display:grid;gap:6px">
                 <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#A7AFAB">GAME LINK · OPTIONAL</span>
                 <input name="link" type="text" inputMode="url" autoComplete="url" placeholder="Store page, build, trailer or deck" style="height:44px;width:100%;min-width:0;padding:0 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.14);border-radius:2px;color:#F2F4F3;font-size:15px;outline:none;transition:border-color .2s" style-focus="border-color:#00B384">
               </label>
-            </sc-if>
             <label style="display:grid;gap:6px">
               <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#A7AFAB">MESSAGE</span>
               <textarea name="message" rows="4" placeholder="{{ msgPlaceholder }}" style="height:44px;width:100%;min-width:0;padding:0 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.14);border-radius:2px;color:#F2F4F3;font-size:15px;outline:none;transition:border-color .2s;height:auto;min-height:100px;padding:12px 16px;line-height:1.5;resize:vertical" style-focus="border-color:#00B384"></textarea>
@@ -365,7 +379,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
   </div>
 </footer>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;gem&quot;,&quot;options&quot;:[&quot;gem&quot;,&quot;shards&quot;],&quot;tsType&quot;:&quot;'gem' | 'shards'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;frame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;glow&quot;,&quot;options&quot;:[&quot;line&quot;,&quot;glow&quot;,&quot;ruler&quot;,&quot;progress&quot;,&quot;cut&quot;,&quot;graphite&quot;],&quot;tsType&quot;:&quot;'line' | 'glow' | 'ruler' | 'progress' | 'cut' | 'graphite'&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;gem&quot;,&quot;options&quot;:[&quot;gem&quot;,&quot;shards&quot;],&quot;tsType&quot;:&quot;'gem' | 'shards'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;frame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;glow&quot;,&quot;options&quot;:[&quot;line&quot;,&quot;glow&quot;,&quot;ruler&quot;,&quot;progress&quot;,&quot;cut&quot;,&quot;graphite&quot;],&quot;tsType&quot;:&quot;'line' | 'glow' | 'ruler' | 'progress' | 'cut' | 'graphite'&quot;},&quot;tileBg&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;facet&quot;,&quot;tone&quot;],&quot;tsType&quot;:&quot;'light' | 'facet' | 'tone'&quot;,&quot;section&quot;:&quot;Portfolio&quot;},&quot;tileLight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;brand&quot;,&quot;options&quot;:[&quot;brand&quot;,&quot;emerald&quot;],&quot;tsType&quot;:&quot;'brand' | 'emerald'&quot;,&quot;section&quot;:&quot;Portfolio&quot;}}">
 class Component extends DCLogic {
   shardsRef = (el) => { if (el && !el.getAttribute('src')) el.src = 'assets/hero-shards.jpg'; };
   state = { allNews: false, sent: false, errors: {}, menuOpen: false,
@@ -404,11 +418,11 @@ class Component extends DCLogic {
   ];
 
   portfolio = [
-    { delay: '0', tag: '01 · PUBLISHER', name: 'Mamboo Games', subtitle: 'Mobile game publisher', domain: 'ent.mamboo.games', href: 'https://ent.mamboo.games/', img: 'assets/tile-mamboo-logo-800.jpg',
+    { delay: '0', tag: '01 · PUBLISHER', name: 'Mamboo Games', subtitle: 'Mobile game publisher', domain: 'ent.mamboo.games', href: 'https://ent.mamboo.games/', logo: 'assets/logo/partners/mamboo.png', logoW: '52%', brand: 'rgb(0,179,132)', glowDelay: '0s',
       stats: [{ value: '1B+', label: 'INSTALLS' }, { value: '$55M+', label: 'LIFETIME REVENUE' }] },
-    { delay: '100', tag: '02 · STUDIO', name: 'Top App Games', subtitle: 'Mobile game studio', domain: 'topapp.games', href: 'https://www.topapp.games/', img: 'assets/tile-topapp-logo-800.jpg',
+    { delay: '100', tag: '02 · STUDIO', name: 'Top App Games', subtitle: 'Mobile game studio', domain: 'topapp.games', href: 'https://www.topapp.games/', logo: 'assets/logo/partners/topapp.png', logoW: '33%', brand: 'rgb(255,190,70)', glowDelay: '-2.7s',
       stats: [{ value: '12M+', label: 'PLAYERS' }, { value: 'Ludus', label: 'FLAGSHIP GAME' }] },
-    { delay: '200', tag: '03 · PUBLISHER', name: 'Digital Vortex', subtitle: 'Independent game publisher', domain: 'vortex.game', href: 'https://vortex.game/', img: 'assets/tile-vortex-logo-800.jpg',
+    { delay: '200', tag: '03 · PUBLISHER', name: 'Digital Vortex', subtitle: 'Independent game publisher', domain: 'vortex.game', href: 'https://vortex.game/', logo: 'assets/logo/partners/vortex.png', logoW: '58%', brand: 'rgb(56,168,150)', glowDelay: '-5.3s',
       stats: [{ value: 'PC & console', label: 'PLATFORMS' }, { value: '2024', label: 'LAUNCHED' }] },
   ];
 
@@ -667,7 +681,10 @@ class Component extends DCLogic {
       heroGem: heroVisual === 'gem',
       heroShards: heroVisual === 'shards',
       shardsRef: this.shardsRef,
-      portfolio: this.portfolio,
+      portfolio: this.portfolio.map((p) => ({ ...p, rgb: (this.props.tileLight ?? 'brand') === 'emerald' ? 'rgb(0,179,132)' : p.brand })),
+      bgLight: !['facet', 'tone'].includes(this.props.tileBg),
+      bgFacet: this.props.tileBg === 'facet',
+      bgTone: this.props.tileBg === 'tone',
       wide: !narrow,
       narrow,
       menuOpen: open,
