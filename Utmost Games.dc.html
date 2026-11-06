@@ -140,8 +140,6 @@ body{padding:0 clamp(20px,3.4vw,56px)}
               <span aria-hidden="true" data-on="opacity:.42;transform:scale(1.12)" style="position:absolute;inset:0;background:radial-gradient(38% 34% at 50% 54%,currentColor,transparent 100%);opacity:.24;transition:opacity .6s,transform .9s cubic-bezier(.16,1,.3,1)"></span>
               <span aria-hidden="true" data-on="opacity:1" style="position:absolute;inset:0;opacity:0;transition:opacity .8s;pointer-events:none"><span data-pf-anim="" style="position:absolute;inset:0;background:radial-gradient(34% 30% at 50% 54%,currentColor,transparent 100%);opacity:.2;animation:pf-drift 4s ease-in-out infinite alternate;animation-delay:{{ p.glowDelay }}"></span><img src="{{ p.logo }}" alt="" data-pf-anim="" data-on="transform:translate(-50%,-50%) scale(1.05)" style="position:absolute;left:50%;top:54%;width:{{ p.logoW }};height:auto;transform:translate(-50%,-50%);filter:blur(16px) brightness(1.5) saturate(1.3);opacity:.18;animation:pf-bloom 2.6s ease-in-out infinite alternate;animation-delay:{{ p.glowDelay }};transition:transform .9s cubic-bezier(.16,1,.3,1)"></span>
               <img src="{{ p.logo }}" alt="{{ p.name }}" loading="lazy" data-on="transform:translate(-50%,-50%) scale(1.05)" style="position:absolute;left:50%;top:54%;width:{{ p.logoW }};height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 12px 28px rgba(0,0,0,.55));transition:transform .9s cubic-bezier(.16,1,.3,1)">
-              <span aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:72px;background:linear-gradient(to bottom,rgba(11,14,13,.75),rgba(11,14,13,0));pointer-events:none"></span>
-              <span style="position:absolute;top:20px;left:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#C9D0CC">{{ p.tag }}</span>
             </div>
             <div style="min-width:0;display:flex;flex-direction:column;gap:20px;padding:clamp(20px,2vw,28px)">
               <div style="display:grid;gap:6px">
@@ -238,7 +236,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
     <h2 data-reveal="0" style="margin:0 0 clamp(28px,3.5vw,48px);font-size:clamp(36px,4.4vw,60px);font-weight:500;letter-spacing:-.035em;line-height:1">Leadership</h2>
     <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px)">
       <div data-reveal="0" style="position:relative;flex:1 1 300px;max-width:380px;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#0F1312">
-        <image-slot id="founder-photo" shape="rect" src="assets/founder-nikolsky-800.jpg" placeholder="Drop a portrait of Vladimir Nikolsky" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+        <image-slot id="founder-photo" shape="rect" src="assets/founder-nikolsky-v3.jpg" placeholder="Drop a portrait of Vladimir Nikolsky" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
         <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,#0B0E0D 0%,rgba(11,14,13,.55) 14%,rgba(11,14,13,0) 36%),radial-gradient(130% 100% at 50% 32%,rgba(11,14,13,0) 58%,rgba(11,14,13,.5) 100%)"></div>
       </div>
       <div data-reveal="100" style="flex:1.4 1 420px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:28px">
@@ -418,12 +416,12 @@ class Component extends DCLogic {
   ];
 
   portfolio = [
-    { delay: '0', tag: '01 · PUBLISHER', name: 'Mamboo Games', subtitle: 'Mobile game publisher', domain: 'ent.mamboo.games', href: 'https://ent.mamboo.games/', logo: 'assets/logo/partners/mamboo.png', logoW: '52%', brand: 'rgb(0,179,132)', glowDelay: '0s',
-      stats: [{ value: '1B+', label: 'INSTALLS' }, { value: '$55M+', label: 'LIFETIME REVENUE' }] },
-    { delay: '100', tag: '02 · STUDIO', name: 'Top App Games', subtitle: 'Mobile game studio', domain: 'topapp.games', href: 'https://www.topapp.games/', logo: 'assets/logo/partners/topapp.png', logoW: '33%', brand: 'rgb(255,190,70)', glowDelay: '-2.7s',
+    { delay: '0', tag: '01 · STUDIO', name: 'Top App Games', subtitle: 'Mobile game studio', domain: 'topapp.games', href: 'https://www.topapp.games/', logo: 'assets/logo/partners/topapp.png', logoW: '33%', brand: 'rgb(255,190,70)', glowDelay: '-2.7s',
       stats: [{ value: '12M+', label: 'PLAYERS' }, { value: 'Ludus', label: 'FLAGSHIP GAME' }] },
-    { delay: '200', tag: '03 · PUBLISHER', name: 'Digital Vortex', subtitle: 'Independent game publisher', domain: 'vortex.game', href: 'https://vortex.game/', logo: 'assets/logo/partners/vortex.png', logoW: '58%', brand: 'rgb(56,168,150)', glowDelay: '-5.3s',
+    { delay: '100', tag: '02 · PUBLISHER', name: 'Digital Vortex', subtitle: 'Independent game publisher', domain: 'vortex.game', href: 'https://vortex.game/', logo: 'assets/logo/partners/vortex.png', logoW: '58%', brand: 'rgb(56,168,150)', glowDelay: '-5.3s',
       stats: [{ value: 'PC & console', label: 'PLATFORMS' }, { value: '2024', label: 'LAUNCHED' }] },
+    { delay: '200', tag: '03 · PUBLISHER', name: 'Mamboo Games', subtitle: 'Mobile game publisher', domain: 'ent.mamboo.games', href: 'https://ent.mamboo.games/', logo: 'assets/logo/partners/mamboo.png', logoW: '52%', brand: 'rgb(0,179,132)', glowDelay: '0s',
+      stats: [{ value: '1B+', label: 'INSTALLS' }, { value: '$55M+', label: 'LIFETIME REVENUE' }] },
   ];
 
   _initMission() {
